@@ -225,5 +225,3 @@ for i in ORFquant_outputgtf:
     output_file.write(str(i) + "\n")
 output_file.close
 
-
-#After, once the gtf and fasta files have been created, downstream filtering for unannotated smORFs follows our lab's inhouse pipeline (Cao, Kevin, et al. “Integrated workflow for discovery of microprotein-coding small open reading frames.” STAR Protocols, vol. 4, no. 4, Dec. 2023, p. 102649, https://doi.org/10.1016/j.xpro.2023.102649.)
