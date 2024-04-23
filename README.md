@@ -22,6 +22,7 @@ From running ORFquant, ORFquant produces an .Rdatafile that you can extract out 
 **RibORF1.0**\
 After running RibORF1.0, run the python script RibORF1.0_format_fasta_and_genepred.py using the candidateORF.fa file, collapsed repre.valid.pred.pvalue.parameters.txt, and the repre.valid.ORF.genepred.txt as input files. Otuput will be a formatted fasta file and genepred file. UCSC tools genePredToGtf function can take the genepred file and convert to a gtf file. Then the second script, RibORf1.0_format_gtf.py can be run with the resulting gtf file to create the resulting formatted gtf.
 
+**Downstream Filtering**\
 After running these scripts, additional filtering steps can be applied to the smORF lissts to remove ones that are annotated or overlap with known coding genes. Bedtools and NCBI blast can be used to filter smORFs that are overlapping coding regions or smORFs with similar amino acid sequences of known proteins. 
 
 
