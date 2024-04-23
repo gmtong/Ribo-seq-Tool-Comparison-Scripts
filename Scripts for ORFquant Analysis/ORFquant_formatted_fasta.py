@@ -2,7 +2,7 @@
 #once the CSV file has been created, this script takes the ORFquant_fasta output file and the csv file to create a fasta file.
 
 #usage: input1:csv with names + genomic coordinates input2: fasta from orfquant output name. python3 input1 input2 output1
-#python ORfquant_fasta_format.py ORFquant_csv.csv ORFquant_fastaoutput.fasta ORFquant_fasta_blastfiltered.fasta
+#python ORFquant_fasta_format.py ORFquant_csv.csv ORFquant_fastaoutput.fasta ORFquant_fasta_blastfiltered.fasta
 
 
 import sys
