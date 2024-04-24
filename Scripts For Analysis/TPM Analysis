@@ -1,0 +1,3 @@
+#TPM Analysis
+#Extract the exons from gtf's outputted from each tool. Calculation of TPM is done using HOMER's analyzeRepeats.pl with the following command.
+analyzeRepeats.pl Riboseq_gtf.gtf hg38 -count exon -condenseGenes -strand + -tpm -d smORF_tagdirectory/
