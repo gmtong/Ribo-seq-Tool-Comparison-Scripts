@@ -1,0 +1,44 @@
+#Long Read Analysis Commands
+
+#Illumina
+#Trimming Command 
+trim_galore --paired Ribo-seq_1.fastq.gz Ribo-seq_2.fastq.gz --cores 4
+
+#Alignment of trimmed reads
+STAR --runThreadN 16 --runMode alignReads --runRNGseed 133 --twopassMode Basic \
+--genomeDir $GENOMEINDEXDIR --genomeLoad NoSharedMemory --sjdbOverhang 100 \
+--readFilesIn $FASTQDIR/$sampleID.1_1_val_1.fastq $FASTQDIR/$sampleID.1_2_val_2.fastq \
+--outFileNamePrefix $BAMSAVEDIR/$sampleID/$sampleID._STAR_hg38_ --outSAMattrRGline "ID:$sampleID	SM:$sampleID" \
+--outSAMattributes All --outSAMstrandField intronMotif --outFilterIntronMotifs RemoveNoncanonical \
+--outSAMtype BAM Unsorted --outBAMcompression 10 --outReadsUnmapped Fastx
+
+#Samtools sort    
+samtools sort -@ 8 -m 6G -l 9 -o $BAMSORTDIR/$sampleID._STARalign_hg38_sort.bam $BAMSAVEDIR/$sampleID/$sampleID._STAR_hg38_Aligned.out.bam
+
+#Individual Assemblies using StringTie    
+stringtie -p 16 -o Ribo-seq_STARalign_hg38_sort.bam
+
+#Merged Individual Assemblies using StringTie
+stringtie --merge -G gencode.v39.annotation.gtf -o StringtieMergeRNAseq_hg38 assembledtranscripts.txt
+
+#Nanopore
+#Flairalign
+python flair.py align -g hg38_no-altChr.fa  -r reads.fastq --output nanopore_flair_aligned_riboseq -t 4 
+#Flair correct
+python flair.py correct -q nanopore_flair_aligned_riboseq.bed -g hg38_no-altChr.fa -f gencode.v39.annotation.gtf -t 16 -o flair_corrected_aligned_riboseq_hg38
+#Flair Collapse
+python flair.py collapse -g hg38_no-altChr.fa -q flair_corrected_aligned_riboseq_hg38_all_corrected.bed -r reads.fastq -t 16 -o FLAIR_collapse_Nanopore.gtf --gtf gencode.v39.annotation.gtf -m minimap2
+#StringTie
+stringtie --merge -p 16 -G gencode.v39.annotation.gtf -o StringtieMerge_Nanopore.gtf Nanopore_assemblies.txt
+
+#GFFcompare commands
+gffcompare -r gencode.v39.annotation.gtf -o GFFcompare_longreadassembly StringtieMergeRNAseq_hg38.gtf
+gffcompare -r gencode.v39.annotation.gtf -o GFFcompare_longreadassembly StringtieMerge_Nanopore.gtf
+
+#statistics from gffcompare .tmap file
+#assembled genes
+cat output.gtf.tmap | sed "1d" | cut -f4 | sort | uniq | wc -l
+#novel genes 
+cat output.gtf.tmap | awk '$3=="u"{print $0}' | cut -f4 | sort | uniq | wc -l
+#novel transcripts
+cat output.gtf.tmap | awk '$3=="u"{print $0}' | cut -f5 | sort | uniq | wc -l
