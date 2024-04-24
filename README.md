@@ -4,7 +4,7 @@ Gregory Tong (4/23/24)
 **Introduction**\
 A list of scripts for formatting and comparing small open reading frame (smORF) prediction pipelines (RibORF0.1, RiboCode, RiboTish, ORFQuant, and RibORF1.0). To recreate the analysis, you must have the output files after running each of the ORF prediction tools and to run the following scripts in python3.
 
-**List Comparison Scripts**
+**List Comparison Scripts**\
 In the list comparison scripts folder, there are two scripts that were used for formatting the fasta file to directly compare smORF results across the different analysis pipelines. Formatting_fasta.py is used for formatting the fasta files outputted from each of the tools excluding RibORF0.1. The other script is specifically for formatting the fastas generated from running RibORF0.1.
 
 **RibORF0.1 Analysis**\
