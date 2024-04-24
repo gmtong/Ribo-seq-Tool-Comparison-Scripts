@@ -26,7 +26,7 @@ After running RibORF1.0, run the python script RibORF1.0_format_fasta_and_genepr
 After running these scripts, additional filtering steps can be applied to the smORF lissts to remove ones that are annotated or overlap with known coding genes. Bedtools and NCBI blast can be used to filter smORFs that are overlapping coding regions or smORFs with similar amino acid sequences of known proteins. 
 
 
-##Scripts For Analysis**\
+**Scripts For Analysis**\
 Fraction_In_Frame_Reads.py script used to pull fraction 1 in frame reads from RibORF0.1 results to replicate analysis in the paper. The Long Read Analysis Commands folder contains a list of command line code used to process the long read data and generate transcriptome assemblies using StringTie. GFFcompare commands can also be found for generating transcriptome assembly statistics for long read and Illumina assemblies. TPM analysis contains the HOMER analyzeRepeat command to quantify coverage across smORF coding regions.
 
 
