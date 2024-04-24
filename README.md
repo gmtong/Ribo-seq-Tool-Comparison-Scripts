@@ -27,7 +27,7 @@ After running these scripts, additional filtering steps can be applied to the sm
 
 
 ##Scripts For Analysis**\
-Fraction_In_Frame_Reads.py script used to pull fraction 1 in frame reads from RibORF0.1 results to replicate analysis in the paper. The Long Read Analysis Commands folder contains a list of command line code used to process the long read data and generate results for the transcriptome assemblies using StringTie. TPM analysis contains the HOMER analyzeRepeat command to quantify coverage across smORF coding regions.
+Fraction_In_Frame_Reads.py script used to pull fraction 1 in frame reads from RibORF0.1 results to replicate analysis in the paper. The Long Read Analysis Commands folder contains a list of command line code used to process the long read data and generate transcriptome assemblies using StringTie. GFFcompare commands can also be found for generating transcriptome assembly statistics for long read and Illumina assemblies. TPM analysis contains the HOMER analyzeRepeat command to quantify coverage across smORF coding regions.
 
 
 
