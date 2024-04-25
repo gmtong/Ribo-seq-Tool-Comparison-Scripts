@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 inputfile  = sys.argv[1]
 output_formattedgtf = sys.argv[2]
-outfile1 = open(output_formattedgtf,'w')
+output_file = open(output_formattedgtf,'w')
 transcriptid = []
 aasequence = []
 strand = []
